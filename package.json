@@ -1,0 +1,84 @@
+{
+  "name": "sunnycoin-lib",
+  "version": "1.1.2",
+  "license": "ISC",
+  "description": "A JavaScript API for interacting with Sunnycoin in Node.js and the browser",
+  "files": [
+    "dist/npm/*",
+    "build/*"
+  ],
+  "main": "dist/npm/",
+  "types": "dist/npm/index.d.ts",
+  "browser": {
+    "ws": "./dist/npm/common/wswrapper.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.85",
+    "@types/ws": "^3.2.0",
+    "bignumber.js": "^4.1.0",
+    "https-proxy-agent": "2.2.1",
+    "jsonschema": "1.2.2",
+    "lodash": "^4.17.4",
+    "ripple-address-codec": "^2.0.1",
+    "ripple-binary-codec": "0.2.0",
+    "ripple-hashes": "^0.3.1",
+    "ripple-keypairs": "^0.10.1",
+    "ripple-lib-transactionparser": "0.7.1",
+    "ws": "^3.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.53",
+    "assert-diff": "^1.0.1",
+    "coveralls": "^2.13.1",
+    "doctoc": "^0.15.0",
+    "ejs": "^2.3.4",
+    "eventemitter2": "^0.4.14",
+    "gulp": "^3.8.10",
+    "gulp-bump": "^0.1.13",
+    "gulp-rename": "^1.2.0",
+    "http-server": "^0.8.5",
+    "jayson": "^1.2.2",
+    "json-loader": "^0.5.2",
+    "json-schema-to-markdown-table": "^0.4.0",
+    "mocha": "^2.1.0",
+    "mocha-in-sauce": "^0.0.1",
+    "mocha-junit-reporter": "^1.9.1",
+    "null-loader": "^0.1.1",
+    "nyc": "^11.3.0",
+    "source-map-support": "^0.5.0",
+    "ts-loader": "^3.2.0",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "2.9.2",
+    "uglifyjs-webpack-plugin": "^1.1.4",
+    "webpack": "3.12.0",
+    "yargs": "^8.0.2"
+  },
+  "scripts": {
+    "build": "gulp",
+    "doctoc": "doctoc docs/index.md --title '# SunnycoinAPI Reference' --github --maxlevel 2",
+    "docgen": "node --harmony scripts/build_docs.js",
+    "clean": "rm -rf dist/npm",
+    "compile": "mkdir -p dist/npm/common && cp -r src/common/schemas dist/npm/common/ && tsc",
+    "watch": "tsc -w",
+    "prepublish": "npm run clean && npm run compile && npm run build",
+    "test": "nyc mocha",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "lint": "tslint -p ./",
+    "perf": "./scripts/perf_test.sh",
+    "start": "node scripts/http.js",
+    "sauce": "node scripts/sauce-runner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sunnycoin/sunnycoin-lib.git"
+  },
+  "readmeFilename": "README.md",
+  "engines": {
+    "node": ">=6.12.3"
+  }
+}

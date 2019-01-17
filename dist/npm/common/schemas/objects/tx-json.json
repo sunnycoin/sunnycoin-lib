@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "tx",
+  "link": "https://sunnycoin.com/build/transactions/",
+  "description": "An object in sunnycoind txJSON format",
+  "type": "object",
+  "properties": {
+    "Account": {"$ref": "address"}
+  },
+  "required": ["Account"]
+}
